@@ -1,0 +1,123 @@
+:root {
+    --main-color: #ff2c1f;
+    --text-color: #020307;
+    --bg-color: #fff;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 100px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+header.scrolled {
+    background-color: rgba(32, 32, 32, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Добавляет тень */
+}
+
+header.visible {
+    background-color: transparent;
+    box-shadow: none; /* Убирает тень при возврате вверх */
+}
+
+
+
+
+
+.navbar {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.logo{
+    font-size: 2rem;
+    font-weight: 600;
+    align-items: center;
+    color: var(--bg-color);
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+.bx{
+    color: var(--main-color);
+
+}
+.navbar{
+    display: flex;
+    column-gap: 5rem;
+}
+.navbar li{
+    position: relative;
+}
+.navbar .nav-link{
+    color: var(--bg-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.navbar .nav-link::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.4s all linear;
+}
+.navbar .nav-link:hover::after,
+.navbar .home-active::after{
+    width: 100%;
+}
+#menu-icon{
+    font-size: 50px;
+    cursor: pointer;
+    z-index: 1000001;
+    display: none;
+}
+.btn{
+    font-size: 1.5rem;
+    padding: 0.7rem 1.4rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-weight: 400;
+    border-radius: 0.5rem;
+}
+.btn:hover{
+    background: #fa1216;
+}
+
+
+/* section{
+    padding: 5.5rem 0 1.5rem;
+} */
+.home-text{
+    z-index: 1;
+    padding: 150px 100px;
+    margin-top: 250px;
+}
+.home-text span{
+    color: var(--bg-color);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.home-text h1{
+    color: var(--bg-color);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}

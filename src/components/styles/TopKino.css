@@ -1,0 +1,82 @@
+:root {
+    --main-color: #ff2c1f;
+    --text-color: #020307;
+    --bg-color: #fff;
+}
+
+.top-kino-container {
+    padding: 20px; /* Добавьте отступы, если нужно */
+}
+
+.Janrs {
+    justify-content: center;
+    margin: 0px;
+}
+
+.wraper_header {
+    display: flex;
+    justify-content: space-between; /* Размещает элементы по краям */
+}
+
+.top-kino-title {
+    margin-right: 10px;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.top-kino-title:hover {
+    color: var(--main-color);
+    transform: scale(1.05);
+}
+
+.Janrs, .top-kino-title {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: inherit; /* Устанавливаем цвет текста по умолчанию */
+}
+
+.Janrs h2, .top-kino-title h3 {
+    margin: 0; /* Убираем отступы у заголовков */
+}
+
+.WatchMoresImg {
+    margin-left: 8px; /* Отступ между текстом и изображением */
+    width: 20px; /* Устанавливаем ширину изображения */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+/* Дополнительные стили для Swiper, если нужно */
+.second-swiper {
+    margin-top: 20px; /* Отступ сверху для слайдера */
+}
+
+.kino-box {
+    text-align: center; /* Центрируем текст внутри блока */
+}
+
+.kino-box img {
+    width: 100%; /* Ширина изображения 100% от родительского блока */
+    height: 500px; /* Автоматическая высота для сохранения пропорций */
+}
+
+/* Скрываем кнопки навигации по умолчанию */
+.second-swiper .swiper-button-next,
+.second-swiper .swiper-button-prev {
+    opacity: 0; /* Скрываем кнопки по умолчанию */
+    transition: opacity 0.3s; /* Плавный переход */
+    color: var(--main-color); /* Цвет кнопок */
+    font-size: 24px; /* Размер кнопок */
+}
+
+/* Показываем кнопки при наведении на слайдер */
+.second-swiper:hover .swiper-button-next,
+.second-swiper:hover .swiper-button-prev {
+    opacity: 1; /* Показываем кнопки при наведении */
+}
+
+/* Увеличиваем кнопки при наведении */
+.second-swiper .swiper-button-next:hover,
+.second-swiper .swiper-button-prev:hover {
+    transform: scale(1.15) !important;
+}

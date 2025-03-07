@@ -1,0 +1,50 @@
+:root{
+    --main-color: #ff2c1f;
+    --text-color:#020307;
+    --bg-color: #fff;
+}
+
+.filter {
+    padding: 20px;
+    border-radius: 8px; /* Закругление углов */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта поднятия */
+    max-width: 700px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+.filter__categories {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+}
+
+.filter__categories-flex {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
+    gap: 10px; /* Промежуток между элементами */
+}
+
+.filter__categories-item {
+    padding: 5px 10px; /* Уменьшение отступов */
+    border: 1px solid #ddd; 
+    border-radius: 5px; /* Закругление углов */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+    font-size: 14px; /* Уменьшение размера шрифта */
+}
+
+.filter__categories-item:hover {
+    transform: scale(1.05); /* Увеличение элемента при наведении */
+}
+
+.active-category {
+    background-color: var(--main-color); /* Цвет фона для активного элемента */
+    border: 1px solid var(--main-color); /* Цвет границы для активного элемента */
+}
+
+.link_Janrs {
+    font-size: 18px;
+    color: white; /* Цвет текста для активного элемента */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
