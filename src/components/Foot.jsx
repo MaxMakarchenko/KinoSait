@@ -53,7 +53,7 @@ function Footer() {
                         <StyledLink href="https://vk.com/ksdhgdjdklaf" target="_blank" rel="noopener noreferrer">
                             <i className="fi fi-brands-vk"></i>
                         </StyledLink>
-                        <StyledLink href="#" target="_blank" rel="noopener noreferrer">
+                        <StyledLink href="https://github.com/MaxMakarchenko" target="_blank" rel="noopener noreferrer">
                             <i className="fi fi-brands-github"></i>
                         </StyledLink>
                         <StyledLink href="https://web.telegram.org/k/#@Traxnimenypojaluista" target="_blank" rel="noopener noreferrer">
@@ -62,7 +62,7 @@ function Footer() {
                         <StyledLink href="#" target="_blank" rel="noopener noreferrer">
                             <i className="fi fi-brands-youtube"></i>
                         </StyledLink>
-                        <StyledLink href="#" target="_blank" rel="noopener noreferrer">
+                        <StyledLink href="https://www.codewars.com/users/MAksssimka228" target="_blank" rel="noopener noreferrer">
                             <i className="fi fi-brands-js"></i>
                         </StyledLink>
                     </Media>

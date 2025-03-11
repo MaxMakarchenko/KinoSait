@@ -1,27 +1,28 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import './styles/Films.css';
 
-const FilmDetail = ({ film }) => {
-  // Проверяем, что объект film существует и имеет нужные поля
-  if (!film) {
-    return <p>Загрузка...</p>; // Показываем индикатор, пока данные не загружены
-  }
+const FilmDetail = ({ films = [] }) => { 
+    if (!films.length) {
+        return <p>Фильмы не найдены.</p>; 
+    }
 
-  return (
-    <div className="film-detail">
-      <h1>{film.Title || 'Неизвестно'}</h1>
-      <img 
-        src={film.Poster || 'default-poster-url.jpg'} 
-        alt={film.Title || 'Неизвестно'} 
-        className="film-detail-image"
-      />
-      <p><strong>Год:</strong> {film.Year || 'Неизвестно'}</p>
-      <p><strong>Жанр:</strong> {film.Genre || 'Неизвестно'}</p>
-      <p><strong>Режиссер:</strong> {film.Director || 'Неизвестно'}</p>
-      <p><strong>Описание:</strong> {film.Plot || 'Описание не доступно'}</p>
-      <p><strong>Рейтинг IMDb:</strong> {film.imdbRating || 'Неизвестно'}</p>
-      <p><strong>Кассовые сборы:</strong> {film.BoxOffice || 'Неизвестно'}</p>
-    </div>
-  );
+    return (
+        <div className="movies-container">
+            {films.map((film) => (
+                <div key={film.imdbID} className="film-card">
+                    <Link to={`/film/${film.imdbID}`} className="film-card-link">
+                        <h2>{film.Title}</h2>
+                        <img src={film.Poster} alt={film.Title} className="film-card-image" />
+                        <p>Год: {film.Year}</p>
+                        <p>Жанр: {film.Genre}</p>
+                        <p>Рейтинг IMDb: {film.imdbRating}</p>
+                        <p className="film-watch">Перейти к просмотру</p>
+                    </Link>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 export default FilmDetail;

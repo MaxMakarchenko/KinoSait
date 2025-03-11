@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import FilmCard from './FilmCard';
 
-const ApiKino = () => {
+const ApiKino = ({ setFilms }) => {
     const [error, setError] = useState(null);
-    const [films, setFilms] = useState([]);
+    const [films, setLocalFilms] = useState([]); // Локальное состояние для фильмов
     const [visibleFilms, setVisibleFilms] = useState(20); // Показываем по 20 фильмов сначала
 
-    // Массив с уникальными ID фильмов (убираем дубликаты с помощью Set)
+    // Массив с уникальными ID фильмов
     const filmIds = [
         "tt0111161", "tt0068646", "tt0071562", "tt0468569", "tt0050083", "tt0133093",
         "tt0108052", "tt0167260", "tt0137523", "tt0372784", "tt0110912", "tt0109830",
@@ -31,55 +31,54 @@ const ApiKino = () => {
 
     const uniqueFilmIds = [...new Set(filmIds)]; // Убираем дубликаты
 
-    useEffect(() => {
-        const fetchFilms = async (startIndex, endIndex) => {
-            const fetchedFilms = [];
-            const apiKey = "5a5b7997"; // Ваш API-ключ
-
-            for (let i = startIndex; i < endIndex && i < uniqueFilmIds.length; i++) {
-                try {
-                    const response = await fetch(`https://www.omdbapi.com/?i=${uniqueFilmIds[i]}&apikey=${apiKey}`);
-                    if (!response.ok) {
-                        throw new Error(`Ошибка HTTP! Статус: ${response.status}`);
-                    }
-                    const filmData = await response.json();
-                    if (filmData.Response === "False") {
-                        throw new Error(filmData.Error);
-                    }
-
-                    // Проверяем, если фильм уже существует, не добавляем его снова
-                    if (!films.some(film => film.imdbID === filmData.imdbID)) {
-                        fetchedFilms.push(filmData);
-                    }
-                } catch (err) {
-                    console.error(`Ошибка при получении фильма с ID ${uniqueFilmIds[i]}:`, err);
-                    setError(`Ошибка при получении фильма с ID ${uniqueFilmIds[i]}: ${err.message}`);
+    const fetchFilms = async (startIndex, endIndex) => {
+        const fetchedFilms = []; // Массив для хранения полученных фильмов
+        const apiKey = "5a5b7997"; // Ваш API-ключ
+    
+        // Проходим по каждому фильму в указанном диапазоне
+        for (let i = startIndex; i < Math.min(endIndex, uniqueFilmIds.length); i++) {
+            try {
+                const response = await fetch(`https://www.omdbapi.com/?i=${uniqueFilmIds[i]}&apikey=${apiKey}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP! Статус: ${response.status}`);
                 }
+    
+                const filmData = await response.json();
+    
+                if (filmData.Response === "False") {
+                    throw new Error(filmData.Error);
+                }
+    
+                // Проверяем, что фильм не был получен ранее
+                if (!films.find(film => film.imdbID === filmData.imdbID)) {
+                    fetchedFilms.push(filmData);
+                }
+            } catch (err) {
+                console.error(`Ошибка при получении фильма с ID ${uniqueFilmIds[i]}:`, err);
+                setError(`Ошибка при получении фильма с ID ${uniqueFilmIds[i]}: ${err.message}`);
             }
-
-            // Добавляем новые фильмы к существующим
-            setFilms(prevFilms => [...prevFilms, ...fetchedFilms]);
-        };
-
-        // Если количество отображаемых фильмов меньше, чем общее количество фильмов, продолжаем загружать
-        if (visibleFilms <= uniqueFilmIds.length && films.length < visibleFilms) {
-            fetchFilms(films.length, visibleFilms); // Загружаем фильмы с последнего индекса
         }
-    }, [films, visibleFilms]); // Зависимости от films и visibleFilms
-
-    const loadMoreFilms = () => {
-        setVisibleFilms(prev => prev + 20); // Увеличиваем количество видимых фильмов на 20
+    
+        // Добавляем новые фильмы к локальному состоянию
+        setLocalFilms(prevFilms => [...prevFilms, ...fetchedFilms]);
+        setFilms(prevFilms => [...prevFilms, ...fetchedFilms]); // Обновляем состояние в родительском компоненте
     };
 
-    if (error) {
-        return <div>Ошибка: {error}</div>;
-    }
+    const loadMoreFilms = () => {
+        const nextVisibleFilms = visibleFilms + 20; // Увеличиваем количество видимых фильмов на 20
+        setVisibleFilms(nextVisibleFilms);
+        fetchFilms(visibleFilms, nextVisibleFilms); // Загружаем новые фильмы
+    };
+
+    useEffect(() => {
+        fetchFilms(0, visibleFilms); // Загружаем начальные фильмы
+    }, [visibleFilms]);
 
     return (
         <div>
             <div className="movies-container">
                 {films.map((film, index) => (
-                    // Используем комбинированный ключ: imdbID + индекс, чтобы гарантировать уникальность
                     <FilmCard key={`${film.imdbID}-${index}`} film={film} />
                 ))}
             </div>

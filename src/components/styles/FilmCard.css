@@ -4,6 +4,7 @@
     --bg-color: #fff;
 }
 
+/* Контейнер для всех карточек */
 .movies-container {
     display: flex;
     flex-wrap: wrap;
@@ -13,43 +14,62 @@
     padding: 20px;
 }
 
+/* Карточка фильма */
 .film-card {
-    flex: 0 1 calc(25% - 20px); /* Карточка занимает 25% ширины, с учетом отступов */
+    flex: 0 1 calc(25% - 20px); /* 25% ширины карточки */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-color: var(--text-color);
     transition: transform 0.2s, box-shadow 0.2s;
-    margin: 10px;
     overflow: hidden;
     position: relative;
     padding: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-/* Мобильная версия */
+/* Адаптация для планшетов */
 @media (max-width: 768px) {
     .film-card {
-        flex: 0 1 calc(50% - 20px); /* На мобильных устройствах карточки будут занимать 50% ширины */
+        flex: 0 1 calc(50% - 20px);
     }
 }
 
-/* Для маленьких экранов (например, телефоны в портретной ориентации) */
+/* Адаптация для мобильных */
 @media (max-width: 480px) {
     .film-card {
-        flex: 0 1 100%; /* На очень маленьких экранах карточки будут занимать 100% ширины */
+        flex: 0 1 100%;
     }
 }
 
-.film-card h2 {
-    font-size: 1.5em;
-    margin: 10px 0;
-    color: var(--bg-color);
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+/* Верхняя информация (год + рейтинг) */
+.film-info {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Рейтинг */
+.film-rating {
+    background-color: rgba(255, 215, 0, 0.8); /* Желтый фон */
+    color: black;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+
+.film-year {
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
 }
 
 .film-card img {
@@ -57,47 +77,67 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
+    border-radius: 8px;
 }
 
-.film-card:hover {
-    transform: scale(1.15);
+
+.film-genre {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.film-card p {
-    font-size: 0.9em;
-    margin: 5px 0;
-    color: var(--bg-color);
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    opacity: 0; /* Начальное состояние - невидимый */
-    visibility: hidden; /* Элемент не видим */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Плавный переход */
+/* Жанр появляется при наведении */
+.film-card:hover .film-genre {
+    opacity: 1;
+    visibility: visible;
 }
 
+/* Нижняя информация */
 .film-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 10px;
 }
 
-.film-card-footer p {
-    margin: 0;
+/* Название фильма */
+.film-card-footer h2 {
+    font-size: 1.3em;
     color: var(--bg-color);
-    cursor: pointer; /* Указатель для ссылки */
+    margin-bottom: 5px;
+    text-align: center;
 }
 
-.favorite-icon {
-    font-size: 1.5em; /* Размер иконки */
-    cursor: pointer; /* Указатель для иконки */
+/* Кнопка "Перейти к просмотру" */
+.film-watch p {
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.film-card:hover p {
-    background-color: rgb(110, 110, 110);
-    opacity: 1; /* Появляется при наведении */
-    visibility: visible; /* Делаем элемент видимым */
+.film-watch p:hover {
+    background-color: darkred;
 }
+
+/* Анимация наведения */
+.film-card:hover {
+    transform: scale(1.05);
+}
+
 
 
 

@@ -29,9 +29,8 @@ const FilmPage = ({ match }) => {
     if (match.params.id) {
       fetchFilmDetails();
     }
-  }, [match.params.id]); // Массив зависимостей: только изменение id запускает запрос
-
-  // Если данные загружаются, показываем индикатор
+  }, [match.params.id]); 
+  
   if (loading) {
     return <p>Загрузка...</p>;
   }

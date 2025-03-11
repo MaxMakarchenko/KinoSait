@@ -18,7 +18,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import FilmDetail from './components/Films';
@@ -27,8 +27,9 @@ import TopKino from './components/TopKino';
 import Header from './components/Header';
 import MainMenu from './components/MainMenu';
 import Login from './components/Login';
-import Films from './components/Films';
+import ApiKino from './components/ApiKinopoisk';
 import Footer from './components/Foot';
+import Anime from './components/Anime';
 
 const slidesData = [
   { id: 1, img: marvelImage, category: "Marvel Universe", title: "Мстители Финал", link: "/film/1" },
@@ -45,6 +46,8 @@ const slidesData = [
 ];
 
 function Home() {
+  const [films, setFilms] = useState([]);
+
   return (
     <>
       <Header />
@@ -82,6 +85,7 @@ function Home() {
       <Janrs />
       <MainMenu />
       <TopKino />
+      <ApiKino setFilms={setFilms} /> 
       <Footer/>
 
     </>
@@ -97,8 +101,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/Main' element={<MainMenu />} />
         <Route path='/Login' element={<Login />} />
-        <Route path='/Films' element={<Films />} />
-        <Route path='/film/:id' element={<FilmDetail />} /> {/* Маршрут для деталей фильма */}
+        <Route path="/film/:id" element={<FilmDetail/>} />
+ 
 
       </Routes>
     </Router>

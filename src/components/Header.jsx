@@ -46,7 +46,7 @@ function Header() {
             <ul className={`navbar ${isHidden ? 'hidden' : ''}`}>
                 <li><NavLink to="/" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Главная</NavLink></li>
                 <li><NavLink to="/Main" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Каталог</NavLink></li>
-                <li><NavLink to="/Login" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Аниме</NavLink></li>
+                <li><NavLink to="/Anime" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Аниме</NavLink></li>
                 <li><NavLink to="/Films" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Сериалы</NavLink></li>
             </ul>
             <Link to="/Login"><button className="btn">Войти в аккаунт</button></Link>
