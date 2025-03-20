@@ -1,43 +1,40 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles/FilmCard.css';
 
 
+
+const formatRating = (rating) => {
+    if(typeof rating ==='number'){
+        return rating.toFixed(1);
+    }
+}
 const FilmCard = ({ film }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const { Title, Year, Genre, Poster, imdbID, imdbRating } = film;
-
+    const { name, year, poster, id, rating } = film;
+    const formattedRating = formatRating(rating?.kp);
     return (
         <div 
             className="film-card" 
-            onMouseEnter={() => setIsHovered(true)} 
-            onMouseLeave={() => setIsHovered(false)}
             role="button"
             tabIndex={0}
-            aria-label={`Фильм: ${Title}`}
+            aria-label={`Фильм: ${name}`}
         >
-            <Link to={`/film/${imdbID}`} className="film-card-link">
+            <Link to={`/film/${id}`} className="film-card-link">
                 <div className="film-info">
-                    <p className="film-rating">⭐ {imdbRating || 'Неизвестно'}</p>
-                    <p className="film-year">{Year || 'Неизвестно'}</p>
+                    <p className="film-rating">⭐ {formattedRating || 'Неизвестно'}</p>
+                    <p className="film-year">{year || 'Неизвестно'}</p>
                 </div>
         
                 <img 
-                    src={Poster || 'default-poster-url.jpg'} 
-                    alt={`Постер фильма: ${Title}`} 
+                    src={poster?.url || 'default-poster-url.jpg'} 
+                    alt={`Постер фильма: ${name}`} 
                     className="film-card-image"
                 />
             </Link>
         
-            <p className={`film-genre ${isHovered ? 'visible' : ''}`}>
-                {Genre || 'Неизвестно'}
-            </p>
-        
             <div className="film-card-footer">
-                <h2>{Title.length > 30 ? `${Title.substring(0, 20)}...` : Title}</h2>
-                <Link to={`/film/${imdbID}`} className="film-watch">
+                <h2>{name.length > 20 ? `${name.substring(0, 15)}...` : name}</h2>
+                <Link to={`/film/${id}`} className="film-watch">
                     <p>Перейти к просмотру</p>
                 </Link>
             </div>
@@ -47,15 +44,17 @@ const FilmCard = ({ film }) => {
 
 FilmCard.propTypes = {
     film: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Year: PropTypes.string,
-        Genre: PropTypes.string,
-        Poster: PropTypes.string,
-        imdbID: PropTypes.string.isRequired, // Обязательно для ссылки
-        imdbRating: PropTypes.string // Можно сделать необязательным, если не всегда передается
+        name: PropTypes.string.isRequired,
+        year: PropTypes.number,
+        poster: PropTypes.shape({
+            url: PropTypes.string
+        }),
+        id: PropTypes.number.isRequired, 
+        rating: PropTypes.shape({
+            kp: PropTypes.number
+        })
     }).isRequired
 };
 
 export default FilmCard;
-
 

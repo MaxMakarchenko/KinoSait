@@ -18,6 +18,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+
+
 import React, { useState } from 'react';
 import './App.css';
 
@@ -46,7 +48,6 @@ const slidesData = [
 ];
 
 function Home() {
-  const [films, setFilms] = useState([]);
 
   return (
     <>
@@ -85,7 +86,6 @@ function Home() {
       <Janrs />
       <MainMenu />
       <TopKino />
-      <ApiKino setFilms={setFilms} /> 
       <Footer/>
 
     </>
