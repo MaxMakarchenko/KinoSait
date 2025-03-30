@@ -1,0 +1,127 @@
+.filmCard {
+    flex: 0 1 calc(25% - 20px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: var(--text-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    @media (max-width: 768px) {
+      flex: 0 1 calc(50% - 20px);
+    }
+  
+    @media (max-width: 480px) {
+      flex: 0 1 100%;
+    }
+  }
+  
+  .filmCardImage {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .filmInfo {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  
+  .filmRating,
+  .filmYear {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .filmRating {
+    background-color: rgba(255, 215, 0, 0.9);
+    color: black;
+  }
+  
+  .filmYear {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+  
+  .filmGenre {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+    .filmCard:hover & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  
+  .filmCardFooter {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 10px;
+  
+    h2 {
+      font-size: 1.3em;
+      color: var(--bg-color);
+      margin-bottom: 5px;
+      text-align: center;
+    }
+  }
+  
+  .filmWatch {
+    p {
+      color: var(--bg-color);
+      background-color: var(--main-color);
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.2s;
+  
+      &:hover {
+        background-color: darkred;
+      }
+    }
+  }
+  
+  .filmCardLink {
+    display: block;
+    text-decoration: none;
+  }
+
+
+  
+
+
+
+
+

@@ -1,0 +1,125 @@
+.topKinoContainer {
+  padding: 20px;
+}
+
+.wraperHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.wraperHeader .janrs, .wraperHeader .topKinoTitle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.wraperHeader .janrs h2, .wraperHeader .janrs h3, .wraperHeader .topKinoTitle h2, .wraperHeader .topKinoTitle h3 {
+  margin: 0;
+}
+.wraperHeader .topKinoTitle {
+  margin-right: 10px;
+  justify-content: center;
+  transition: transform 0.3s, color 0.3s;
+}
+.wraperHeader .topKinoTitle:hover {
+  color: var(--main-color);
+  transform: scale(1.05);
+}
+
+.secondSwiper {
+  margin-top: 20px;
+}
+.secondSwiper:hover .swiperButtonNext,
+.secondSwiper:hover .swiperButtonPrev {
+  opacity: 1;
+}
+.secondSwiper .swiperButtonNext,
+.secondSwiper .swiperButtonPrev {
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  color: var(--main-color);
+  font-size: 24px;
+}
+.secondSwiper .swiperButtonNext:hover,
+.secondSwiper .swiperButtonPrev:hover {
+  transform: scale(1.15) !important;
+}
+
+.kinoBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+.kinoBox img {
+  height: 600px;
+  width: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.kinoBox .overlay {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+}
+.kinoBox .overlay .grade {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: green;
+}
+.kinoBox .overlay .new {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: var(--main-color);
+}
+.kinoBox .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.kinoBox .info h3 {
+  color: var(--bg-color);
+  margin: 0;
+}
+.kinoBox .info .pay {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.kinoBox .info .pay.free {
+  color: #666;
+}
+.kinoBox .info .pay.paid {
+  color: var(--main-color);
+}
+
+@media (max-width: 1200px) {
+  .kinoBox img {
+    height: 450px;
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .kinoBox img {
+    height: 300px;
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .kinoBox img {
+    height: 225px;
+    width: 150px;
+  }
+}/*# sourceMappingURL=TopKino.module.css.map */

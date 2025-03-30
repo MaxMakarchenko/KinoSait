@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Filter from './Filter';
 import ApiKino from './ApiKinopoisk';
-import FilmCard from './FilmCard'; // Импортируйте FilmCard
+import FilmCard from './FilmCard'; 
 import './styles/Swiper.css';
 
 const MainMenu = () => {
@@ -9,11 +9,6 @@ const MainMenu = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const handleCategoryChange = (category) => {
-        setSelectedCategory(category);
-    };
-
     const handleFetchFilms = (fetchedFilms) => {
         setFilms(fetchedFilms); // Сохраняем фильмы, полученные из API
         setLoading(false); // Устанавливаем загрузку в false после получения данных
@@ -34,7 +29,6 @@ const MainMenu = () => {
 
     return (
         <>
-            <Filter onCategoryChange={handleCategoryChange} />
             <div className="movies" id="movies">
                 <div className="movies-container">
                     {loading && <p></p>} {/* Индикатор загрузки */}

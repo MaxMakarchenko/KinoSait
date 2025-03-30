@@ -1,0 +1,64 @@
+.moviesContainer {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 40px;
+  height: 60rem;
+  width: 100%;
+  position: relative;
+}
+.moviesContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.filmDetails {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.filmDetails .mainInformation {
+  margin-top: 100px;
+  width: auto;
+  height: auto;
+}
+.filmDetails .mainInformation h2 {
+  color: #ff2c1f;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.filmDetails .mainInformation h3 {
+  font-size: 1.2rem;
+  margin: 1rem 0 0.5rem;
+  color: #ff2c1f;
+}
+.filmDetails .mainInformation p {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+.filmDetails .mainInformation a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.filmDetails .mainInformation a:hover {
+  color: #ff2c1f;
+}
+.filmDetails .mainInformation .filmRating {
+  color: gold;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.filmDetails .mainInformation .filmYear {
+  font-style: italic;
+  color: #ff2c1f;
+}/*# sourceMappingURL=MainInfo.module.css.map */

@@ -18,9 +18,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-
-
-import React, { useState } from 'react';
 import './App.css';
 
 import FilmDetail from './components/Films';
@@ -32,6 +29,8 @@ import Login from './components/Login';
 import ApiKino from './components/ApiKinopoisk';
 import Footer from './components/Foot';
 import Anime from './components/Anime';
+import GenrePage from './components/GenrePage';
+
 
 const slidesData = [
   { id: 1, img: marvelImage, category: "Marvel Universe", title: "Мстители Финал", link: "/film/1" },
@@ -48,7 +47,6 @@ const slidesData = [
 ];
 
 function Home() {
-
   return (
     <>
       <Header />
@@ -86,7 +84,6 @@ function Home() {
       <Janrs />
       <MainMenu />
       <TopKino />
-      <Footer/>
 
     </>
   );
@@ -102,9 +99,9 @@ function App() {
         <Route path='/Main' element={<MainMenu />} />
         <Route path='/Login' element={<Login />} />
         <Route path="/film/:id" element={<FilmDetail/>} />
- 
-
+        <Route path="/genre/:id" element={<GenrePage />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 }

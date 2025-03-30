@@ -1,0 +1,53 @@
+.filterContainer {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.filterWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.filterList {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.filterButton {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+
+  &:hover {
+      background-color: #f0f0f0;
+  }
+
+  &.active {
+      background-color: #ff2c1f;
+      color: white;
+      border-color: #ff2c1f;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .filterList {
+      gap: 8px;
+  }
+  
+  .filterButton {
+      padding: 6px 12px;
+      font-size: 13px;
+  }
+}

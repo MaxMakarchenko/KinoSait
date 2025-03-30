@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
-import './styles/Header.css';
+import styles from './styles/Header.module.scss';
+import { Icon } from '@iconify/react';
+import bxMovie from '@iconify/icons-bx/bxs-movie';
+import bxMenu from '@iconify/icons-bx/bx-menu';
 
 function Header() {
     const [headerClass, setHeaderClass] = useState('visible');
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isHidden, setIsHidden] = useState(false);
+    const [menuActive, setMenuActive] = useState(false);
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
@@ -37,19 +41,65 @@ function Header() {
         };
     }, [lastScrollY]);
 
+    const toggleMenu = () => {
+        setMenuActive(!menuActive);
+    };
+
     return (
-        <header className={headerClass}>
-            <Link to="/" className="logo">
-                <i className='bx bxs-movie'></i>Zoom cinema
+        <header className={`${styles.header} ${styles[headerClass]}`}>
+            <Link to="/" className={styles.logo}>
+                <Icon icon={bxMovie} className={styles.bx} />
+                Zoom cinema
             </Link>
-            <div className='bx bx-menu' id="menu-icon"></div>
-            <ul className={`navbar ${isHidden ? 'hidden' : ''}`}>
-                <li><NavLink to="/" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Главная</NavLink></li>
-                <li><NavLink to="/Main" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Каталог</NavLink></li>
-                <li><NavLink to="/Anime" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Аниме</NavLink></li>
-                <li><NavLink to="/Films" className={({ isActive }) => isActive ? 'nav-link home-active' : 'nav-link'}>Сериалы</NavLink></li>
+            <Icon 
+                icon={bxMenu} 
+                className={styles.menuIcon} 
+                id="menu-icon"
+                onClick={toggleMenu}
+            />
+            <ul className={`${styles.navbar} ${isHidden ? styles.hidden : ''} ${menuActive ? styles.active : ''}`}>
+                <li>
+                    <NavLink 
+                        to="/" 
+                        className={({ isActive }) => 
+                            isActive ? `${styles.navLink} ${styles.homeActive}` : styles.navLink
+                        }
+                    >
+                        Главная
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/Main" 
+                        className={({ isActive }) => 
+                            isActive ? `${styles.navLink} ${styles.homeActive}` : styles.navLink
+                        }
+                    >
+                        Каталог
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/Anime" 
+                        className={({ isActive }) => 
+                            isActive ? `${styles.navLink} ${styles.homeActive}` : styles.navLink
+                        }
+                    >
+                        Аниме
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/Films" 
+                        className={({ isActive }) => 
+                            isActive ? `${styles.navLink} ${styles.homeActive}` : styles.navLink
+                        }
+                    >
+                        Сериалы
+                    </NavLink>
+                </li>
             </ul>
-            <Link to="/Login"><button className="btn">Войти в аккаунт</button></Link>
+            <Link to="/Login" className={styles.btn}>Войти в аккаунт</Link>
         </header>
     );
 }

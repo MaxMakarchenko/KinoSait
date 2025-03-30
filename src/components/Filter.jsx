@@ -1,40 +1,45 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import './styles/Filter.css'
-import Button from '../components/button/button';
+import { useState } from "react";
+import styles from './styles/Filter.module.scss';
 
-function Filter({ onCategoryChange }) {
-    const [status, changeStatus] = useState(''); // Состояние для активной категории
-    const filter_categories = ["", "Anime", "Horror", "Fantasy", "Comedy", "Marvel"]; // Доступные категории, добавлено пустое значение для "Все"
+const Filter = ({ onCategoryChange }) => {
+    const [activeCategory, setActiveCategory] = useState('');
+
+    // Список жанров, соответствующих API Кинопоиска
+    const filterCategories = [
+        { id: '', name: "Все" },
+        { id: 'аниме', name: "Аниме" },
+        { id: 'ужасы', name: "Ужасы" },
+        { id: 'фэнтези', name: "Фэнтези" },
+        { id: 'комедия', name: "Комедия" },
+        { id: 'боевик', name: "Боевик" },
+        { id: 'драма', name: "Драма" },
+        { id: 'фантастика', name: "Фантастика" }
+    ];
+
+    const handleCategoryClick = (categoryId) => {
+        setActiveCategory(categoryId);
+        onCategoryChange(categoryId); 
+    };
 
     return (
-
-        <div className="filter">
-            <div id="categories" className="filter__categories anchor">
-                <div className="filter__categories-flex">
-                    {filter_categories.map((category, index) => (
-                        <div
-                            key={index}
-                            onClick={() => { 
-                                changeStatus(category); // Обновляем состояние активной категории
-                                onCategoryChange(category); // Вызываем функцию для обновления категории в MainMenu
-                            }}
-                            className={`filter__categories-item ${category === status ? 'active-category' : ''}`} // Добавляем класс для активной категории
+        <div className={styles.filterContainer}>
+            <div className={styles.filterWrapper}>
+                <div className={styles.filterList}>
+                    {filterCategories.map((category) => (
+                        <button
+                            key={category.id}
+                            onClick={() => handleCategoryClick(category.id)}
+                            className={`${styles.filterButton} ${
+                                category.id === activeCategory ? styles.active : ''
+                            }`}
                         >
-                            <span>
-                                <Link className="link_Janrs" to="#">{category || "Все"}</Link> {/* Ссылка на категорию */}
-                            </span>
-
-                        </div>
+                            {category.name}
+                        </button>
                     ))}
-                    
-                    <Button />
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Filter;
-
-

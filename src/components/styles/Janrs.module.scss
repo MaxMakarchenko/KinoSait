@@ -1,0 +1,128 @@
+.movies {
+    width: 100%;
+  }
+  
+  .wraperHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  
+    .janrs {
+      display: flex;
+      align-items: center;
+      color: var(--bg-color);
+      margin-top: 40px;
+      font-size: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s;
+  
+      &:hover {
+        .watchMoreImg {
+          display: block;
+        }
+      }
+  
+      h2 {
+        margin: 0;
+      }
+    }
+  
+    .topKinoTitle {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+  
+      &:hover {
+        .watchMoreImg {
+          display: block;
+        }
+      }
+  
+      h3 {
+        margin: 0;
+      }
+    }
+  }
+  
+  .watchMoreImg {
+    display: none;
+    margin-left: 15px;
+    margin-top: 7px;
+    width: 25px;
+    height: 20px;
+    color: var(--bg-color);
+  }
+  
+  .firstSwiper {
+    margin-top: 10px;
+    width: 100%;
+    overflow: hidden;
+  
+    &:hover {
+      .swiperButtonNext,
+      .swiperButtonPrev {
+        opacity: 1;
+      }
+    }
+  
+    .swiperSlide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      overflow: hidden;
+      width: calc(20% - 10px);
+      margin: 0 5px;
+      transition: transform 0.4s, border-radius 0.4s;
+  
+      &:hover {
+        border-radius: 25px;
+        transform: scale(1.05);
+  
+        .swiperImage {
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    .swiperImage {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      transition: transform 0.4s;
+    }
+  
+    .swiperButtonNext,
+    .swiperButtonPrev {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .firstSwiper .swiperSlide {
+      width: calc(25% - 10px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .firstSwiper .swiperSlide {
+      width: calc(33.333% - 10px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .firstSwiper .swiperSlide {
+      width: calc(50% - 10px);
+    }
+    
+    .wraperHeader .janrs {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  }
